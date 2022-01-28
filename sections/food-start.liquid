@@ -1,0 +1,85 @@
+<div class="cus">
+  <div class="section-header text-center cus_title">
+    <h1>{{section.settings.title}}</h1>
+    {% for block in section.blocks%}
+      <h2 class="cus_title_subtitle">{{block.settings.richtext1}}</h2>
+    {% endfor %}
+  </div>
+  <div class="wrap">
+    {% for block in section.blocks%}
+      <div class="wrap_left">
+        <img src="{{block.settings.image | img_url: "master"}}">
+      </div>
+      <div class="wrap_right">
+        <div class="wrap_right_h3">{{block.settings.richtext2}}</div>
+        <div class="wrap_right_h2">{{block.settings.richtext3}}</div>
+        {{block.settings.richtext4}}
+        <div class="wrap_right_btn" id="call-to-action">   
+          <a href="{{ block.settings.link }}" class="btn">{{ block.settings.linktext }}</a>
+        </div> 
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Food Start",
+    "settings": [{
+        "type" : "text",
+        "id"  :  "title",
+        "label": "Title",
+        "default" : "Liquid Basics default"
+    }],
+    "blocks": [
+    {
+      "type" : "text",
+      "name" : "Custom Blocks",
+      "settings" : [
+      {
+        "type" : "richtext",
+        "id" : "richtext1",
+        "label" : "Sub Title"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image",
+        "label" : "Pick an Image"
+      },
+      {
+        "type" : "richtext",
+        "id" : "richtext2",
+        "label" : "Text 1"
+      },
+      {
+        "type" : "richtext",
+        "id" : "richtext3",
+        "label" : "Text 2"
+      },
+      {
+        "type" : "richtext",
+        "id" : "richtext4",
+        "label" : "Text 3"
+      },
+      {
+        "id": "link",
+        "type": "url",
+        "label": "Button link"
+      },
+      {
+        "id": "linktext",
+        "type": "text",
+        "label": "Button text",
+        "default": "Click here"
+      }
+      ]
+    }
+    ],
+    "presets" : [
+      {
+        "name" : "Food Start",
+        "category" : "Image"
+      }
+    ]
+  }
+{% endschema %}
